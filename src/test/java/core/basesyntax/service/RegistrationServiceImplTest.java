@@ -1,5 +1,8 @@
 package core.basesyntax.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import core.basesyntax.dao.StorageDao;
 import core.basesyntax.dao.StorageDaoImpl;
 import core.basesyntax.db.Storage;
@@ -9,16 +12,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-
 class RegistrationServiceImplTest {
-    static User testUser;
-    static StorageDao storageDao;
-    static Storage storage;
-    static RegistrationService registrationService;
-
     public static final String LOGIN_EDGE_VALID = "user66";
     public static final String LOGIN_EDGE_INVALID = "user5";
     public static final String LOGIN_VALID = "user1234";
@@ -34,6 +28,9 @@ class RegistrationServiceImplTest {
     public static final int AGE_EDGE_INVALID = 17;
     public static final int AGE_INVALID = -1;
     public static final int AGE_EMPTY = 0;
+    private static User testUser;
+    private static StorageDao storageDao;
+    private static RegistrationService registrationService;
 
     @BeforeAll
     static void setUpAll() {

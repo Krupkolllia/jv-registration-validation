@@ -6,11 +6,11 @@ import core.basesyntax.exception.InvalidRegisterArgumentException;
 import core.basesyntax.model.User;
 
 public class RegistrationServiceImpl implements RegistrationService {
-    private final StorageDao storageDao = new StorageDaoImpl();
-
     public static final int MINIMUM_LOGIN_LENGTH = 6;
     public static final int MINIMUM_PASSWORD_LENGTH = 6;
     public static final int MINIMUM_AGE = 18;
+
+    private final StorageDao storageDao = new StorageDaoImpl();
 
     @Override
     public User register(User user) {
