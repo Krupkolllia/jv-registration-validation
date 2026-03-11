@@ -123,4 +123,16 @@ class RegistrationServiceImplTest {
         assertThrows(InvalidRegisterArgumentException.class,
                 () -> registrationService.register(null));
     }
+
+    @Test
+    void registerExistingUser_notOk() {
+        testUser.setLogin(LOGIN_VALID);
+        testUser.setPassword(PASSWORD_VALID);
+        testUser.setAge(AGE_VALID);
+
+        storageDao.add(testUser);
+
+        assertThrows(InvalidRegisterArgumentException.class,
+                () -> registrationService.register(testUser));
+    }
 }

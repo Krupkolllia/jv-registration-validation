@@ -2,6 +2,7 @@ package core.basesyntax.service;
 
 import core.basesyntax.dao.StorageDao;
 import core.basesyntax.dao.StorageDaoImpl;
+import core.basesyntax.db.Storage;
 import core.basesyntax.exception.InvalidRegisterArgumentException;
 import core.basesyntax.model.User;
 
@@ -16,6 +17,10 @@ public class RegistrationServiceImpl implements RegistrationService {
     public User register(User user) {
         if (user == null) {
             throw new InvalidRegisterArgumentException("User can't be null");
+        }
+
+        if (storageDao.get(user.getLogin()) != null) {
+            throw new InvalidRegisterArgumentException("User is already registered");
         }
 
         if (user.getLogin() == null || user.getLogin().length() < MINIMUM_LOGIN_LENGTH) {
