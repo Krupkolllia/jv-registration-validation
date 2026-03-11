@@ -19,21 +19,33 @@ public class RegistrationServiceImpl implements RegistrationService {
             throw new InvalidRegisterArgumentException("User can't be null");
         }
 
+        if (user.getLogin() == null) {
+            throw new InvalidRegisterArgumentException("Write a login!");
+        }
+
+        if (user.getPassword() == null) {
+            throw new InvalidRegisterArgumentException("Write a password!");
+        }
+
+        if (user.getAge() == null) {
+            throw new InvalidRegisterArgumentException("Write an age!");
+        }
+
         if (storageDao.get(user.getLogin()) != null) {
             throw new InvalidRegisterArgumentException("User is already registered");
         }
 
-        if (user.getLogin() == null || user.getLogin().length() < MINIMUM_LOGIN_LENGTH) {
+        if (user.getLogin().length() < MINIMUM_LOGIN_LENGTH) {
             throw new InvalidRegisterArgumentException(
-                    "Login does not exists or shorter than " + MINIMUM_LOGIN_LENGTH);
+                    "Login must be at least  " + MINIMUM_LOGIN_LENGTH + " characters long");
         }
 
-        if (user.getPassword() == null || user.getPassword().length() < MINIMUM_PASSWORD_LENGTH) {
+        if (user.getPassword().length() < MINIMUM_PASSWORD_LENGTH) {
             throw new InvalidRegisterArgumentException(
-                    "Password does not exists or shorter than " + MINIMUM_PASSWORD_LENGTH);
+                    "Password must be at least  " + MINIMUM_PASSWORD_LENGTH + " characters long");
         }
 
-        if (user.getAge() == null || user.getAge() < MINIMUM_AGE) {
+        if (user.getAge() < MINIMUM_AGE) {
             throw new InvalidRegisterArgumentException("You must be older than " + MINIMUM_AGE);
         }
 
