@@ -1,6 +1,6 @@
 package core.basesyntax.exception;
 
-public class InvalidRegisterArgumentException extends Exception {
+public class InvalidRegisterArgumentException extends RuntimeException {
     public InvalidRegisterArgumentException() {
         super();
     }
