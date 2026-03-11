@@ -45,7 +45,7 @@ class RegistrationServiceImplTest {
     }
 
     @Test
-    void registerValidArguments_ok() {
+    void registerValidArgumentsAddedToStorage_ok() {
         testUser.setLogin(LOGIN_VALID);
         testUser.setPassword(PASSWORD_VALID);
         testUser.setAge(AGE_VALID);
@@ -55,7 +55,19 @@ class RegistrationServiceImplTest {
         registrationService.register(testUser);
         User actual = storageDao.get(testUser.getLogin());
 
-        assertEquals(expected, actual, "User not found or is different from expected");
+        assertEquals(expected, actual, "User was not added");
+    }
+
+    @Test
+    void registerValidArgumentsReturnsCorrectUser_ok() {
+        testUser.setLogin(LOGIN_VALID);
+        testUser.setPassword(PASSWORD_VALID);
+        testUser.setAge(AGE_VALID);
+
+        User expected = testUser;
+        User actual = registrationService.register(testUser);
+
+        assertEquals(expected, actual, "User is different from given");
     }
 
     @Test
